@@ -7,6 +7,7 @@ import android.os.Looper
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.azissn.simulasioptik.MyCanvas.MyCanvas
@@ -17,6 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var sliderX: Slider
     private lateinit var sliderY: Slider
+    private lateinit var btnGanti: Button
 
     private var doubleBackToExitPressedOnce = false
 
@@ -27,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         myCanvas = findViewById(R.id.myCanvas)
         sliderX = findViewById(R.id.sliderX)
         sliderY = findViewById(R.id.sliderY)
-
+        btnGanti = findViewById(R.id.gantiCermin)
 
         sliderX.addOnChangeListener { _, value, _ ->
             myCanvas.setCoordinates(value, sliderY.value)
@@ -35,6 +37,12 @@ class MainActivity : AppCompatActivity() {
 
         sliderY.addOnChangeListener { _, value, _ ->
             myCanvas.setCoordinates(sliderX.value, value)
+        }
+
+        btnGanti.setOnClickListener {
+            myCanvas.gantiCermin()
+            myCanvas.switchCondition()
+
         }
 
         hideSystemUI()
